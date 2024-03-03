@@ -20,7 +20,7 @@ config: {
       gender: 'Male',
       age: '18',
       height: '5.10',
-      facebookLink: 'stalk a few',
+      facebookLink: 'https://www.facebook.com/m.zenesha',
       nick: 'Mr perfect'
     };
 
