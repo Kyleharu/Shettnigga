@@ -1,13 +1,13 @@
 module.exports = {
  config: {
-	 name: "prefix",
-	 version: "1.0",
-	 author: "Tokodori_Frtiz",//remodified by cliff
-	 countDown: 5,
-	 role: 0,
-	 shortDescription: "no prefix",
-	 longDescription: "no prefix",
-	 category: "auto 🪐",
+   name: "prefix",
+   version: "1.0",
+   author: "Tokodori_Frtiz",//remodified by cliff
+   countDown: 5,
+   role: 0,
+   shortDescription: "no prefix",
+   longDescription: "no prefix",
+   category: "auto 🪐",
  },
 
  onStart: async function(){}, 

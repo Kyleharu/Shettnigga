@@ -1,9 +1,9 @@
 module.exports = {
   config: {
     name: "ping",
-    aliases: ["ms"],
+    aliases: ["p"],
     version: "1.0",
-    author: "Sandu",
+    author: "Mr perfect",
     role: 0,
     shortDescription: {
       en: "Displays the current ping of the bot's system."
@@ -13,7 +13,7 @@ module.exports = {
     },
     category: "System",
     guide: {
-      en: "Use {p}ping to check the current ping of the bot's system."
+      en: "Use {p}ping to check the ping of the bot's system."
     }
   },
   onStart: async function ({ api, event, args }) {

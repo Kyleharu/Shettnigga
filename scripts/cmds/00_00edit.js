@@ -12,7 +12,7 @@ module.exports = {
 		},
 	},
 
-	onStart: async function ({ api, event, args }) {
+	onStart: async function ({ api, event,args }) {
 		const replyMessage = event.messageReply.body;
 
 		if (!replyMessage || !args || args.length === 0) {
