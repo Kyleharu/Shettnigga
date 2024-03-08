@@ -4,7 +4,7 @@ module.exports = {
 		name: 'gptgo',
 		version: '2.1.0',
 		author: 'KENLIEPLAYS',
-		countDown: 5,
+		countDown: 0,
 		role: 0,
 		shortDescription: 'GPTGO by Kenlie Navacilla Jugarap',
 		longDescription: {

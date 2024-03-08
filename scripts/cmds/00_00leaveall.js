@@ -3,7 +3,7 @@ module.exports = {
 		name: "leaveall",
 		author: "cliff",
 		version: "1.5.0",
-		countDown: 10,
+		countDown: 0,
 		role: 0,
 		category: "Admin",
 		shortDescription: {

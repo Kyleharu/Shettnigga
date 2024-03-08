@@ -5,7 +5,7 @@ module.exports = {
 		name: "gpt4",
 		author: "cliff",
 		version: "1.5",
-		countDown: 5,
+		countDown: 0,
 		role: 0,
 		category: "GPT4",
 		shortDescription: {

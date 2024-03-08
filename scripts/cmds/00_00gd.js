@@ -6,7 +6,7 @@ module.exports = {
 				name: "gd",
 				author: "jonell", // Jonell Magallanes | Jmlabaco", //convert and modified by JmLabaco API by Jonell Magallanes
 				version: "1.5",
-				countDown: 5,
+				countDown: 0,
 				role: 0,
 				category: "media",
 				shortDescription: {

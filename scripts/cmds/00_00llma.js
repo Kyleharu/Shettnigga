@@ -5,7 +5,7 @@ module.exports = {
 		name: "llma",
 		author: "cliff",//credits sa may ari ng api
 		version: "1.0.3",
-		countDown: 5,
+		countDown: 0,
 		role: 0,
 		category: "member",
 		shortDescription: {

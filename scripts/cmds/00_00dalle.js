@@ -1,67 +1,65 @@
-const axios = require('axios');
-const fs = require('fs-extra');
-const path = require('path');
+const axios = require("axios");
+const fs = require("fs-extra");
+const path = require("path");
 
 module.exports = {
-	config: {
-		name: "dalle3",
-		aliases: ["dalle"],
-		version: "1.0",
-		author: "JARiF",
-		countDown: 15,
-		role: 0,
-		shortDescription: "Generate images by Dalle3",
-		longDescription: "Generate images by Dalle3",
-		category: "download",
-		guide: {
-			en: "{pn} prompt"
-		}
-	},
+  config: {
+    name: "dalle",
+    version: "1.0.2",
+    author: "Rehat86@তুরতুল",
+    role: 0,
+    countDown: 5,
+    longDescription: {
+      en: "Generate images using dalle 3"
+    },
+    category: "ai",
+    guide: {
+      en: "{pn} <prompt>"
+    }
+  },
 
-	onStart: async function ({ api, message, args }) {
-		try {
-			const p = args.join(" ");
+  onStart: async function ({ api, event, args, message }) {
+    const permission = ["100084713389776"];
+    if (!permission.includes(event.senderID)) {
+      api.sendMessage(
+        "~Oh Baka! Seems you don't have permission to use this command!🐱",
+        event.threadID,
+        event.messageID
+      );
+      return;
+    }
 
-			const w = await message.reply("Please wait...");
+    const keySearch = args.join(" ");
+if (!keySearch) return message.reply("Add something baka.");
+    message.reply("Please wait...⏳");
 
-			// const cookieString = await fs.readFile('dallekey.json', 'utf-8');
-			// const cookie = JSON.parse(cookieString);
+    try {
+        const res = await axios.get(`https://api-turtle.onrender.com/api/dalle?prompt=${keySearch}&cookie=1joTLu3Y8pQTj8zL7wqTEKnb-8hDfgqdnHoDPTdSQs1HOSN0KtdVaVWY5oiSgklGX18ZgZDUnlue-opqbQN2KIJN7qftrrTe3r9NskfhuPXu_ZEQsncyrEVGP6sCxVHdNed8ZxrJ0zt2lhInbMBx2Po7CQUzwA54BwELU6dz2nnDLMG-5eGHFNpxfNZRUfDKqwBUhTxC3jdt2CvTnvxmZOA`);
+        const data = res.data.result; // Change from res.data.results.images to res.data.result
 
-			const data2 = {
-				prompt: p,
-				cookie: "add your own cookie"
-			};
+        if (!data || data.length === 0) {
+            api.sendMessage("An error occurred.", event.threadID, event.messageID);
+            return;
+        }
 
-			const config = {
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			};
+        const imgData = [];
+        for (let i = 0; i < data.length; i++) { // No need to limit to Math.min(numberSearch, data.length)
+            const imgUrl = data[i];
+            const imgResponse = await axios.get(imgUrl, { responseType: 'arraybuffer' });
+            const imgPath = path.join(__dirname, 'cache', `${i + 1}.jpg`);
+            await fs.outputFile(imgPath, imgResponse.data);
+            imgData.push(fs.createReadStream(imgPath));
+        }
 
-			const response = await axios.post('https://project-dallee3.onrender.com/dalle', data2, config);
+        await api.sendMessage({
+            attachment: imgData,
+        }, event.threadID, event.messageID);
 
-			if (response.status === 200) {
-				const imageUrls = response.data.image_urls.filter(url => !url.endsWith('.svg'));
-				const imgData = [];
-
-				for (let i = 0; i < imageUrls.length; i++) {
-					const imgResponse = await axios.get(imageUrls[i], { responseType: 'arraybuffer' });
-					const imgPath = path.join(__dirname, 'cache', `${i + 1}.jpg`);
-					await fs.outputFile(imgPath, imgResponse.data);
-					imgData.push(fs.createReadStream(imgPath));
-				}
-
-				await api.unsendMessage(w.messageID);
-
-				await message.reply({
-					body: `✅ | Generated`,
-					attachment: imgData
-				});
-			} else {
-				throw new Error("Non-200 status code received");
-			}
-		} catch (error) {
-			return message.reply("Redirect failed! Most probably bad prompt.");
-		}
-	}
+    } catch (error) {
+        console.error(error);
+        api.sendMessage("An error occurred.", event.threadID, event.messageID);
+    } finally {
+        await fs.remove(path.join(__dirname, 'cache'));
+    }
+  }
 }

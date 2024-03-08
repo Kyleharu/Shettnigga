@@ -4,7 +4,7 @@ module.exports = {
 	config: {
 		name: "llma2",
 		author: "cliff",
-		countDown: 5,
+		countDown: 0,
 		role: 0,
 		category: "member",
 		shortDescription: {
