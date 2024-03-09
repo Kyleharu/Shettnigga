@@ -6,7 +6,7 @@ read line 242 to 278 if u want to  add your own question using json
 
 go to line 333 and 429 to change reward
 
-read line 390 if you want to customize correct or wrong answers output
+read line 39646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464646464640 if you want to customize correct or wrong answers output
 
 don't change credit please i know making this code is not hard as you think, but adding question is really a struggle 
 
@@ -21,8 +21,8 @@ module.exports = {
     name: "quiz",
     aliases: [],
     version: "2.0",
-    author: "Jun",
-    countDown: 2,
+    author: "Jun",//Shared By Loid Butter
+    countDown: 10,
     role: 0,
     shortDescription: {
       vi: "",
@@ -32,7 +32,7 @@ module.exports = {
       vi: "",
       en: ""
     },
-    category: "games",
+    category: "fun",
     guide: {
       en: "{pn} <category>\n{pn} rank\n-view your rank\n{pn} leaderboard\n-view top players\nto submit a bug report or feedback\n\n just type:\nquizr <your message>\n"
     },
@@ -501,4 +501,4 @@ Reaction.fvckoff = true;
 };
 function formatText(text) {
   return text.normalize("NFD").toLowerCase();
-}
+    }

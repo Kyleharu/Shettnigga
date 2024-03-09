@@ -2,23 +2,23 @@ module.exports = {
   config: {
     name: "slot",
     version: "1.0",
-    author: "SKY",
+    author: "Rishad",
     shortDescription: {
-      en: "Slot game",
+      en: "Game slot",
     },
     longDescription: {
-      en: "A slot game with a 50% chance to win.",
+      en: "Game slot.",
     },
-    category: "game",
+    category: "fun",
   },
   langs: {
     en: {
-      invalid_amount: "Please enter a valid bet amount.",
-      not_enough_money: "You don't have enough money to place this bet.",
-      spin_message: "Spinning the slot machine...",
-      win_message: "You won %1$💸! 🎉",
-      lose_message: "You lost %1$... 😔",
-      jackpot_message: "Congratulations! You hit the jackpot and won %1$! 🤑",
+      invalid_amount: "Put a big 🌝 number, you can win twice the risk of my son 🌝🙌",
+      not_enough_money: "You have this amount, see your balance then 🌝🤣",
+      spin_message: "continued Rotation 🌝",
+      win_message:"You win %1$💗!",
+      lose_message: "You lost %1$🥲.",
+      jackpot_message: "This is the amount that Diem won! tripartite %1 $!",
     },
   },
   onStart: async function ({ args, message, event, envCommands, usersData, commandName, getLang }) {
@@ -34,37 +34,46 @@ module.exports = {
       return message.reply(getLang("not_enough_money"));
     }
 
-    const win = Math.random() < 0.5; // 50% chance to win
+    const slots = ["🍒", "🍇", "🍊", "🍉", "🍋", "🍎", "🍓", "🍑", "🥝"];
+    const slot1 = slots[Math.floor(Math.random() * slots.length)];
+    const slot2 = slots[Math.floor(Math.random() * slots.length)];
+    const slot3 = slots[Math.floor(Math.random() * slots.length)];
 
-    let winnings = 0;
-
-    if (win) {
-      winnings = amount;
-    } else {
-      winnings = -amount;
-    }
+    const winnings = calculateWinnings(slot1, slot2, slot3, amount);
 
     await usersData.set(senderID, {
       money: userData.money + winnings,
       data: userData.data,
     });
 
-    const messageText = getSpinResultMessage(win, winnings, getLang);
+    const messageText = getSpinResultMessage(slot1, slot2, slot3, winnings, getLang);
 
     return message.reply(messageText);
   },
 };
 
-function getSpinResultMessage(win, winnings, getLang) {
-  if (win) {
-    if (winnings === 0) {
-      return getLang("spin_message");
-    } else if (winnings === 1) {
-      return getLang("win_message", winnings) + " 🎉";
-    } else {
+function calculateWinnings(slot1, slot2, slot3, betAmount) {
+  if (slot1 === "🍒" && slot2 === "🍒" && slot3 === "🍒") {
+    return betAmount * 10;
+  } else if (slot1 === "🍇" && slot2 === "🍇" && slot3 === "🍇") {
+    return betAmount * 5;
+  } else if (slot1 === slot2 && slot2 === slot3) {
+    return betAmount * 3;
+  } else if (slot1 === slot2 || slot1 === slot3 || slot2 === slot3) {
+    return betAmount * 2;
+  } else {
+    return -betAmount;
+  }
+}
+
+function getSpinResultMessage(slot1, slot2, slot3, winnings, getLang) {
+  if (winnings > 0) {
+    if (slot1 === "🍒" && slot2 === "🍒" && slot3 === "🍒") {
       return getLang("jackpot_message", winnings);
+    } else {
+      return getLang("win_message", winnings) + `\n[ ${slot1} | ${slot2} | ${slot3} ]`;
     }
   } else {
-    return getLang("lose_message", -winnings) + " 😔";
+    return getLang("lose_message", -winnings) + `\n[ ${slot1} | ${slot2} | ${slot3} ]`;
   }
 }

@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 
 module.exports = {
     config: {
-      name: "rbg",
+      name: "removebg",
       aliases: [],
       author: "Hazeyy/kira", // hindi ito collab, ako kasi nag convert :>
       version: "69",
@@ -15,7 +15,7 @@ module.exports = {
       longDescription: {
         en: "Remove background in your photo"
       },
-      category: "img",
+      category: "image",
       guide: {
         en: "{p}{n} [reply to an img]"
       }

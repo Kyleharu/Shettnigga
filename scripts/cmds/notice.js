@@ -22,10 +22,10 @@ module.exports = {
 		if (!args[0])
 			return message.reply("Please enter the message you want to send to all groups");
 		const formSend = {
-			body: `Notice from SuperAdmin\n────────────────\n${args.join(" ")}`,
+			body: `Notice from Owner\n────────────────\n${args.join(" ")}`,
 			attachment: await getStreamsFromAttachment([...event.attachments, ...(event.messageReply?.attachments || [])])
-		}
-
+    }
+		
 
 		const allThreadID = (await api.getThreadList(2000, null, ["INBOX"]))
 			.filter(item => item.isGroup === true && item.threadID != event.threadID)

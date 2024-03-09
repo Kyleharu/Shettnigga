@@ -1,7 +1,6 @@
 module.exports = {
   config: {
     name: "topexp",
-    aliases: ['ranktop'],
     version: "1.0",
     author: "OTINXSANDIP",
     role: 0,
@@ -27,11 +26,11 @@ module.exports = {
       return;
     }
 
-    const topExp = usersWithExp.sort((a, b) => b.exp - a.exp).slice(0, 10);
+    const topExp = usersWithExp.sort((a, b) => b.exp - a.exp).slice(0, 40);
 
-    const topUsersList = topExp.map((user, index) => `${index + 1}. ${user.name}: ${user.exp}`);
+    const topUsersList = topExp.map((user, index) => `🏅「${index + 1}」》 ${user.name}: ${user.exp}`);
 
-    const messageText = `Top 10 Rank Users:\n${topUsersList.join('\n')}`;
+    const messageText = `[🌍]𝗧𝗢𝗣-𝗥𝗔𝗡𝗞📑:\n${topUsersList.join('\n')}`;
 
     message.reply(messageText);
   }

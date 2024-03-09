@@ -2,24 +2,24 @@ const axios = require("axios")
 const fs = require("fs");
 
 module.exports = {
-	config: {
-		name: "zom",
-		aliases: [],
-		author: "Who's Deku/kira", // hindi ito collab, ako kasi nag convert :>
-		version: "69",
-		cooldowns : 5,
-		role: 0,
-		shortDescription: {
-			en: "Zombie filter"
-		},
-		longDescription: {
-			en: "Zombie filter"
-		},
-		category: "fun",
-		guide: {
-			en: "{p}{n} [reply to image or image url]"
-		}
-	},
+  config: {
+    name: "zom",
+    aliases: [],
+    author: "Who's Deku/kira", // hindi ito collab, ako kasi nag convert :>
+    version: "69",
+    cooldowns : 5,
+    role: 0,
+    shortDescription: {
+      en: "Zombie filter"
+    },
+    longDescription: {
+      en: "Zombie filter"
+    },
+    category: "fun",
+    guide: {
+      en: "{p}{n} [reply to image or image url]"
+    }
+  },
 
 onStart: async function({ api, event, args }) {
   const { threadID, messageID } = event;

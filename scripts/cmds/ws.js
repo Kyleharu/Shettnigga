@@ -22,29 +22,32 @@ module.exports = {
     }
   },
   onStart: async function ({ api, event, args }) {
+
     if (args.length < 1) {
+   
       api.sendMessage('Please provide a keyword for the wallpaper search.', event.threadID, event.messageID);
       return;
     }
 
     const keyword = args[0];
-    let amount = args[1] || 1;
+    let amount = args[1] || 1; 
 
+ 
     amount = parseInt(amount);
     if (isNaN(amount) || amount <= 0) {
       api.sendMessage('Please provide a valid positive integer for the amount.', event.threadID, event.messageID);
       return;
     }
 
-    try {
-     
-      await fs.ensureDir('cache');
 
+    try {
       const response = await axios.get(`https://antr4x.onrender.com/get/searchwallpaper?keyword=${keyword}`);
 
       if (response.data.status && response.data.img.length > 0) {
+   
         amount = Math.min(amount, response.data.img.length);
 
+  
         const imgData = [];
         for (let i = 0; i < amount; i++) {
           const image = response.data.img[i];
@@ -57,17 +60,17 @@ module.exports = {
             imgData.push(imagePath);
           } catch (error) {
             console.error("Error downloading image:", error);
-            api.sendMessage('An error occurred while downloading images. Please try again later.', event.threadID, event.messageID);
-            return;
           }
         }
 
+       
         api.sendMessage({
           attachment: imgData.map(imgPath => fs.createReadStream(imgPath)),
           body: `Wallpapers based on '${keyword}' 🌟`,
         }, event.threadID, (err) => {
           if (err) console.error("Error sending images:", err);
 
+      
           imgData.forEach(imgPath => {
             fs.unlinkSync(imgPath);
           });
@@ -77,7 +80,7 @@ module.exports = {
       }
     } catch (error) {
       console.error('Error fetching wallpaper images:', error);
-      api.sendMessage('please provide a single keyword\or try again with diff keywords', event.threadID, event.messageID);
+      api.sendMessage('An error occurred while fetching wallpaper images.', event.threadID, event.messageID);
     }
   },
 };
