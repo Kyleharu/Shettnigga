@@ -1,6 +1,6 @@
 module.exports = {
  config: {
- name: "🇲🇬",
+ name: "anjara",
  version: "1.0",
  author: "thea",
  countDown: 5,
@@ -11,7 +11,7 @@ module.exports = {
  }, 
  onStart: async function(){}, 
  onChat: async function({ event, message, getLang }) {
- if (event.body && event.body.toLowerCase() === "🇲🇬") {
+ if (event.body && event.body.toLowerCase() === "anjara") {
  return message.reply({
  body: "「🇲🇬」- Anjara/Aesther",
  attachment: await global.utils.getStreamFromURL("https://i.ibb.co/7GVF1DD/image.jpg")

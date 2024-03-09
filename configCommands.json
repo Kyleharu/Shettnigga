@@ -67,7 +67,10 @@
     "tell": {
       "delayPerGroup": 250
     },
-    "edit": {}
+    "edit": {},
+    "botnick": {
+      "delayPerGroup": 250
+    }
   },
   "envEvents": {
     "logsbot": {
