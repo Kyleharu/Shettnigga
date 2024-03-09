@@ -28,7 +28,7 @@ module.exports = {
       return message.reply({body: `Here are the top ${numResults} high-quality image results for "${query}" from Unsplash:`, attachment: attachments});
     } catch (error) {
       console.error(error);
-      return message.reply("Sorry, I couldn't find any results.")
+      return message.reply("Sorry, I couldn't find any results.");
     }
   }
 }

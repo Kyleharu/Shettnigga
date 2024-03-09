@@ -3,7 +3,7 @@ const axios = require('axios');
 module.exports = {
   config: {
     name: "getCode",
-    aliases: ["getcode"],
+    aliases: ["code"],
     version: "1.0",
     author: "Xyron Chen"
   },
@@ -25,7 +25,7 @@ module.exports = {
       const response = await axios.get(`https://pastebin.com/raw/${codeId}`);
       const code = response.data;
 
-      api.sendMessage(`Here is the code:\n\n${code}`, event.threadID, event.messageID);
+      api.sendMessage(`here is the code\n\n${code}`, event.threadID, event.messageID);
     } catch (error) {
       api.sendMessage('An error occurred while fetching the code!', event.threadID, event.messageID);
     }

@@ -1,45 +1,23 @@
-const axios = require("axios");
-
 module.exports = {
-  config: {
-    name: "lyrics",
-    version: "1.0",
-    author: "MILAN",
-    countDown: 5,
-    role: 0,
-    shortDescription: {
-      vi: "Nhận lời bài hát",
-      en: "Get song lyrics"
-    },
-    longDescription: {
-      vi: "Nhận lời bài hát với Hình ảnh của họ",
-      en: "Get song lyrics with their Images"
-    },
-    category: "info",
-    guide: {
-      en: "{pn} <song name>"
-    }
-  },
-  
-  onStart: async function ({ api, event, args, message }) {
+  config: { name: 'lyrics', author: 'Jun', countDown: 5, role: 0, category: 'media', shortDescription: { en: 'sends lyrics to chat' } },
+  onStart: async function({ api, event, args }) {
     try {
-      const lyrics = args.join(' ');
-      if (!lyrics) {
-        return api.sendMessage("Please provide a song name!", event.threadID, event.messageID);
+      const axios = require("axios");
+      const title = args.join(" ");
+      if (!title) {
+        api.sendMessage('Please provide a song name.', event.threadID, event.messageID);
+        return;
       }
-      const { data } = await axios.get(`https://milanbhandari.imageapi.repl.co/lyrics`, {
-        params: {
-          query: lyrics 
-        }
-      });
-      const messageData = {
-        body: `❏Title: ${data.title || ''}\n\n❏Artist: ${data.artist || ''}\n\n❏Lyrics:\n\n ${data.lyrics || ''}`,
-        attachment: await global.utils.getStreamFromURL(data.image)
-      };
-      return api.sendMessage(messageData, event.threadID);
+      const res = await axios.get(`https://api-test.yourboss12.repl.co/api/lyrics?title=${title}`);
+      const { songTitle, artist, lyrics, image } = res.data;
+      const attachment = [await global.utils.getStreamFromURL(image)];
+      const message = `title: ${title}\nartist: ${artist}\n\n\n${lyrics}`;
+      api.setMessageReaction("🎧", event.messageID, event.messageID, api); 
+      api.sendMessage('searching for lyrics, please wait...', event.threadID, event.messageID); 
+      api.sendMessage({ attachment, body: message }, event.threadID, event.messageID);
     } catch (error) {
       console.error(error);
-      return api.sendMessage("An error occurred while fetching lyrics!", event.threadID, event.messageID);
+      api.sendMessage('Error occurred.', event.threadID, event.messageID);
     }
   }
 };

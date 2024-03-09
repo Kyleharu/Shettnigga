@@ -11,7 +11,7 @@ module.exports = {
     role: 0,
     shortDescription: "",
     longDescription: "Convert media from a link (supports jpeg, jpg, png, mp4, gif, wav)",
-    category: "media",
+    category: "𝗠𝗘𝗗𝗜𝗔",
     guide: "{pn}Convert [link]"
   },
   onStart: async function ({ api, event, args }) {

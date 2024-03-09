@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 // config 
-const apiKey = "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";
+const apiKey = "";
 const maxTokens = 500;
 const numberGenerateImage = 4;
 const maxStorageMessage = 4;
@@ -18,7 +18,7 @@ module.exports = {
 		name: "gpt",
 		version: "1.4",
 		author: "NTKhang",
-		countDown: 0,
+		countDown: 5,
 		role: 0,
 		description: {
 			vi: "GPT chat",
@@ -26,7 +26,7 @@ module.exports = {
 		},
 		category: "box chat",
 		guide: {
-		vi: "   {pn} <draw> <nội dung> - tạo hình ảnh từ nội dung"
+			vi: "   {pn} <draw> <nội dung> - tạo hình ảnh từ nội dung"
 				+ "\n   {pn} <clear> - xóa lịch sử chat với gpt"
 				+ "\n   {pn} <nội dung> - chat với gpt",
 			en: "   {pn} <draw> <content> - create image from content"

@@ -1,85 +1,74 @@
-const axios = require("axios")
+const axios = require("axios");
+const fs = require("fs-extra");
+const path = require("path");
+
 module.exports = {
-	config: {
-		name: 'anya',
-		version: '1.2',
-		author: 'Xemon',
-		countDown: 15,
-		role: 0,
-		shortDescription: 'Anya AI',
-		longDescription: {
-			vi: 'Chat với simsimi',
-			en: 'Chat with Anya'
-		},
-		category: 'funny',
-		guide: {
-			vi: '   {pn} [on | off]: bật/tắt simsimi'
-				+ '\n'
-				+ '\n   {pn} <word>: chat nhanh với simsimi'
-				+ '\n   Ví dụ:\n    {pn} hi',
-			en: '   {pn} <word>: chat with hina'
-				+ '\n   Example:\n    {pn} hi'
-		}
-	},
+  config: {
+    name: "anya",
+    aliases: [],
+    author: "kshitiz",
+    version: "2.0",
+    cooldowns: 5,
+    role: 0,
+    shortDescription: {
+      en: ""
+    },
+    longDescription: {
+      en: "japnese anya text to speech"
+    },
+    category: "𝗔𝗜",
+    guide: {
+      en: "{p}{n} japn [text]"
+    }
+  },
+  onStart: async function ({ api, event, args }) {
+    try {
+      const {
+        createReadStream,
+        unlinkSync
+      } = fs;
 
-	langs: {
-		vi: {
-			turnedOn: 'Bật simsimi thành công!',
-			turnedOff: 'Tắt simsimi thành công!',
-			chatting: 'Đang chat với simsimi...',
-			error: 'Simsimi đang bận, bạn hãy thử lại sau'
-		},
-		en: {
-			turnedOn: '✅ | Turned on Anya successfully!',
-			turnedOff: '✅ | Turned off Anya successfully!',
-			chatting: 'Already Chatting with hina...',
-			error: 'What?🙂'
-		}
-	},
+      const {
+        resolve
+      } = path;
 
-	onStart: async function ({ args, threadsData, message, event, getLang }) {
-		if (args[0] == 'on' || args[0] == 'off') {
-			await threadsData.set(event.threadID, args[0] == "on", "settings.simsimi");
-			return message.reply(args[0] == "on" ? getLang("turnedOn") : getLang("turnedOff"));
-		}
-		else if (args[0]) {
-			const yourMessage = args.join(" ");
-			try {
-				const responseMessage = await getMessage(yourMessage);
-				return message.reply(`${responseMessage}`);
-			}
-			catch (err) {
-        console.log(err)
-				return message.reply(getLang("error"));
-			}
-		}
-	},
+      const {
+        messageID,
+        threadID,
+        senderID
+      } = event;
 
-	onChat: async ({ args, message, threadsData, event, isUserCallCommand, getLang }) => {
-		if (args.length > 1 && !isUserCallCommand && await threadsData.get(event.threadID, "settings.simsimi")) {
-			try {
-				const langCode = await threadsData.get(event.threadID, "settings.lang") || global.GoatBot.config.language;
-				const responseMessage = await getMessage(args.join(" "), langCode);
-				return message.reply(`${responseMessage}`);
-			}
-			catch (err) {
-				return message.reply(getLang("error"));
-			}
-		}
-	}
+      const name = "Anya"; 
+
+      const ranGreetVar = [`Konichiwa ${name}`, "Konichiwa senpai", "Hora"];
+      const ranGreet = ranGreetVar[Math.floor(Math.random() * ranGreetVar.length)];
+
+      const chat = args.join(" ");
+
+      if (!args[0]) return api.sendMessage(`${ranGreet}`, threadID, messageID);
+
+      const simRes = ` ${chat}`;
+
+
+      const text = encodeURIComponent(simRes);
+
+      const audioPath = resolve(__dirname, 'cache', `${threadID}_${senderID}.wav`);
+
+      const audioApi = await axios.get(`https://api.tts.quest/v3/voicevox/synthesis?text=${text}&speaker=3`);
+
+      const audioUrl = audioApi.data.mp3StreamingUrl;
+
+      await global.utils.downloadFile(audioUrl, audioPath);
+
+      const att = createReadStream(audioPath);
+
+      api.sendMessage({
+        body: simRes,
+        attachment: att
+      }, threadID, () => unlinkSync(audioPath));
+    } catch (error) {
+      console.error(error);
+      api.sendMessage("error", threadID, messageID);
+    }
+  }
 };
-
-async function getMessage(yourMessage, langCode) {
-	const res = await axios.post(
-    'https://api.simsimi.vn/v1/simtalk',
-    new URLSearchParams({
-        'text': yourMessage,
-        'lc': 'en'
-    })
-);
-
-	if (res.status > 200)
-		throw new Error(res.data.success);
-
-	return res.data.message;
-}

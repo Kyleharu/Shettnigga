@@ -23,10 +23,10 @@ role: 2,
     fs.unlink(filePath, (err) => {
       if (err) {
         console.error(err);
-        api.sendMessage(`âŽï¸ | Failed to delete ${fileName}.`, event.threadID);
+        api.sendMessage(`❎ | Failed to delete ${fileName}.`, event.threadID);
         return;
       }
-      api.sendMessage(`âœ…ï¸ ( ${fileName} ) Deleted successfully!`, event.threadID);
+      api.sendMessage(`✅ ( ${fileName} ) 𝗗𝗘𝗟𝗘𝗧𝗘𝗗 𝚂𝚞𝚌𝚌𝚎𝚜𝚜`, event.threadID);
     });
   }
 };

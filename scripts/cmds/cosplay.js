@@ -51,7 +51,7 @@ module.exports = {
  body: replyMessage,
  attachment: fs.createReadStream(tempImageFilePath)
  }).then(() => {
- 
+
  fs.unlinkSync(tempImageFilePath);
  });
  });

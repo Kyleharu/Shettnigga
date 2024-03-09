@@ -20,7 +20,7 @@ module.exports = {
       vi: "",
       en: "Challenge your friends to a fight and see who wins!",
     },
-    category: "🎮 Game",
+    category: "fun",
     guide: "{prefix}fight @mention",
   },
 
@@ -195,7 +195,7 @@ function startFight(message, fight) {
 
   // List of available attacks
   const attackList = ["kick", "punch", "slap", "forfeit"];
-
+  
   message.send(
     `${currentPlayer.name} has challenged ${opponent.name} to a duel!\n\n${currentPlayer.name} has ${currentPlayer.hp} HP, and ${opponent.name} has ${opponent.hp} HP.\n\nIt's ${currentPlayer.name}'s turn currently.\n\nAvailable attacks: ${attackList.join(', ')}`
   );
