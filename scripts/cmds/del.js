@@ -26,7 +26,7 @@ role: 2,
         api.sendMessage(`❎ | Failed to delete ${fileName}.`, event.threadID);
         return;
       }
-      api.sendMessage(`✅ ( ${fileName} ) 𝗗𝗘𝗟𝗘𝗧𝗘𝗗 𝚂𝚞𝚌𝚌𝚎𝚜𝚜`, event.threadID);
+      api.sendMessage(`🚮 ( ${fileName} ) 𝗗𝗘𝗟𝗘𝗧𝗘𝗗 𝘴𝘶𝘤𝘤𝘦𝘴𝘴𝘧𝘶𝘭𝘭𝘺 ✅`, event.threadID);
     });
   }
 };
