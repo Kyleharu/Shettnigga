@@ -3,7 +3,7 @@ module.exports = {
         name: "hi",
        aliases: [],
         version: "1.0",
-        author: "yukinori",
+        author: "kyle",
         countDown: 5,
         role: 0,
         shortDescription: "sarcasm",
@@ -16,6 +16,6 @@ onChat: async function({
     message,
     getLang
 }) {
-    if (event.body && event.body.toLowerCase() == "hi") return message.reply("Hey! How was your day? Anything interesting happen?");
+    if (event.body && event.body.toLowerCase() == "hi") return message.reply("Hey! How was your day?");
 }
 };
