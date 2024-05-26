@@ -3,8 +3,8 @@ const fs = require("fs-extra");
 const request = require("request");
 module.exports = {
 	config: {
-		name: "leave",
-		aliases: ["l"],
+		name: "Out",
+		aliases: ["leave","l"],
 		version: "1.0",
 		author: "Sandy",
 		countDown: 5,
@@ -25,6 +25,6 @@ module.exports = {
  } else {
  id = parseInt(args.join(" "));
  }
- return api.sendMessage('goodbye guys', id, () => api.removeUserFromGroup(api.getCurrentUserID(), id))
+ return api.sendMessage('𝗚𝗢𝗢𝗗 𝗕𝗬𝗘 𝗡𝗜𝗚𝗚𝗔𝗦🙃\n\n➥𝗥𝗘𝗔𝗦𝗢𝗡: 𝗧𝗛𝗘 𝗕𝗢𝗧 𝗜𝗦 𝗟𝗘𝗔𝗩𝗜𝗡𝗚 𝗧𝗛𝗜𝗦 𝗚𝗥𝗢𝗨𝗣. ', id, () => api.removeUserFromGroup(api.getCurrentUserID(), id))
 		}
 	};
