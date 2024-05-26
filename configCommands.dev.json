@@ -8,7 +8,7 @@
     "daily": {
       "rewardFirstDay": {
         "coin": 100,
-        "exp": 10
+        "exp": 90
       }
     },
     "notification": {
@@ -28,7 +28,7 @@
     },
     "timer": {},
     "quiz": {
-      "reward": 0
+      "reward": 100000
     },
     "note": {
       "delayPerGroup": 250
@@ -81,12 +81,5 @@
       "greetAttachment": "Your Attachment"
     }
   },
-  "commandUnload": [
-    "lyrics.js",
-    "hi.js",
-    "fight.js",
-    "ping.js",
-    "help.js",
-    "pedit.js"
-  ]
+  "commandUnload": [""]
 }
