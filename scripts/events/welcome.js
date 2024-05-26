@@ -22,14 +22,14 @@
           defaultWelcomeMessage: "Xin chào {userName}.\nChào mừng bạn đến với {boxName}.\nChúc bạn có buổi {session} vui vẻ!"
         },
         en: {
-          session1: "morning",
-          session2: "noon",
-          session3: "afternoon",
-          session4: "evening",
-          welcomeMessage: "Thank you for inviting me to the group!\nI'm Mr perfect ai.\nMy prefix: %1\nTo view the list of commands, please enter: %1help",
-          multiple1: "you",
-          multiple2: "you guys",
-          defaultWelcomeMessage: `Hello {userNameTag}.\nWelcome {multiple} to the chat group: {boxName}\nHave a nice {session} 😊`
+          session1: "𝗆𝗈𝗋𝗇𝗂𝗇𝗀",
+          session2: "𝗇𝗈𝗈𝗇",
+          session3: "𝖺𝖿𝗍𝖾𝗋𝗇𝗈𝗈𝗇",
+          session4: "𝖾𝗏𝖾𝗇𝗂𝗇𝗀",
+          welcomeMessage: "🟥🟧🟩\n\n𝗭𝗲𝗽𝗵𝘆𝗿𝘂𝘀𝗩𝟮 are connectedow successfully🟢\n⧽⧽ 𝗜 𝗔𝗠 𝗞𝗬𝗟𝗘'𝗦 𝗔𝗜 ⧼⧼\n𝗖𝗥𝗘𝗔𝗧𝗢𝗥: https://www.facebook.com/itssmekylebaitit\n\n𝗠𝗬 𝗣𝗥𝗘𝗙𝗜𝗫: %1\nTo view the list of commands, please enter: %1help\n\nThank you for inviting me to the group!",
+          multiple1: "𝘆𝗼𝘂",
+          multiple2: "𝘆𝗼𝘂 𝗴𝘂𝘆𝘀",
+          defaultWelcomeMessage: `𝗛𝗲𝗹𝗹𝗼 {userNameTag}.\n\n𝗪𝗲𝗹𝗰𝗼𝗺𝗲 {multiple} 𝘁𝗼 𝘁𝗵𝗲 𝗰𝗵𝗮𝘁 𝗴𝗿𝗼𝘂𝗽: {boxName}\n\n𝖧𝖺𝗏𝖾 𝖺 𝗇𝗂𝖼𝖾{session} 😊`
         }
       },
 
