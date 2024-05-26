@@ -18,8 +18,8 @@ module.exports = {
     },
     onStart: async function ({ api, event, args }) {
         const timeStart = Date.now();
-        await api.sendMessage("Checking ping ⌛️", event.threadID);
+        await api.sendMessage("♻️ checking ping...", event.threadID);
         const ping = Date.now() - timeStart;
-        api.sendMessage(`Ping: ${ping}ms ⚡️`, event.threadID);
+        api.sendMessage(`𝗣𝗶𝗻𝗴: ${ping}𝗺𝘀 ⚡️`, event.threadID);
     }
 };
