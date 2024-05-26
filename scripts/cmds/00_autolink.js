@@ -27,7 +27,7 @@ module.exports = {
 		}
 
 		if (event.body.toLowerCase().includes('autolink')) {
-			api.sendMessage("AutoLink is active.", event.threadID, event.messageID);
+			api.sendMessage("𝗔𝘂𝘁𝗼𝗟𝗶𝗻𝗸 𝗶𝘀 𝗮𝗰𝘁𝗶𝘃𝗲🟢", event.threadID, event.messageID);
 		}
 	},
 	onChat: async function ({ api, event }) {
@@ -35,7 +35,7 @@ module.exports = {
 			const { url } = this.checkLink(event.body);
 			console.log(`Attempting to download from URL: ${url}`);
 			this.downLoad(url, api, event);
-			api.setMessageReaction("💐", event.messageID, (err) => {}, true);
+			api.setMessageReaction("⬇️", event.messageID, (err) => {}, true);
 		}
 	},
 	downLoad: function (url, api, event) {
