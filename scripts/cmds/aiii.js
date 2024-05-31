@@ -8,7 +8,8 @@ const Prefixes = [
   'ai',
   'hi',
   'bot',
-'Zephyrus', 
+'Zephyrus',
+  'kyle', 
 ];
 
 module.exports = {
@@ -51,7 +52,7 @@ module.exports = {
       if (prompt === '') {
 
         await message.reply(
-          "𝙷𝚎𝚕𝚕𝚘 𝙸 𝚊𝚖 𝗞𝘆𝗹𝗲'𝘀 𝗕𝗼𝘁  𝚊𝚜𝚔 𝚖𝚎 𝚊 𝚚𝚞𝚎𝚜𝚝𝚒𝚘𝚗 𝚋𝚛𝚘!!"  
+          "𝙷𝚎𝚕𝚕𝚘 𝙸 𝚊𝚖 𝗞𝘆𝗹𝗲'𝘀 𝗕𝗼𝘁  𝚊𝚜𝚔 𝚖𝚎 𝚊 𝚚𝚞𝚎𝚜𝚝𝚒𝚘𝚗 𝚋𝚛𝚘 !!"  
         );
         
         return;
@@ -68,7 +69,7 @@ module.exports = {
 
       const messageText = response.data.reply.trim(); // Adjust according to the response structure of the new API
       const userName = getLang("final");
-      const finalMsg = `${userName}\n❍━━━━━━━━━━━━━━━━━━━━❏\n${messageText}\n❍━━━━━━━━━━━━━━━━━━━━❏\n🗓️ | ⏰ 𝗗𝗔𝗧𝗘 𝗔𝗡𝗗 𝗧𝗜𝗠𝗘 :\n${formattedDateTime}`;
+      const finalMsg = `${userName}\n❍━━━━━━━━━━━━━━━━━━━━❏\n${messageText}\n❍━━━━━━━━━━━━━━━━━━━━❏\n🗓️ | ⏰ 𝗗𝗔𝗧𝗘 𝗔𝗡𝗗 𝗧𝗜𝗠𝗘 :\n${formattedDateTime}\n\n𝗕𝗼𝘁 𝗔𝗱𝗺𝗶𝗻: https://www.facebook.com/itssmekylebaitit`;
       api.editMessage(finalMsg, loadingReply.messageID);
 
       console.log('Sent answer as a reply to user');
