@@ -31,7 +31,6 @@ const emojis = {
 // Replies to specific words
 const replies = {
 "Bye": "Bye nigga...",
-"ha": "haloveyou",
 "kyle": "bat mo hinahanap owner ko?",
 "who is you lover?": "𝗧𝗛𝗘𝗔🌷 𝗶𝘀 𝗺𝘆 𝗘𝘃𝗲𝗿𝘆𝘁𝗵𝗶𝗻𝗴🌸"};
 
